@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>true</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_rtp_tax_return_p_gl_matrix</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Tax_GL_Matrix_Duplicate_Validations</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+	// Add your code here
+var gl=new GlideRecord('x_rtp_tax_return_p_gl_matrix');
+	gl.addQuery('tax_company',current.tax_company);
+	gl.addQuery('tax_states',current.tax_states);
+	gl.addQuery('return_type',current.return_type);
+	gl.addQuery('g_l_account_for_form',current.g_l_account_for_form);
+	gl.addQuery('g_l_account',current.g_l_account);
+	gl.addQuery('cost_center',current.cost_center);
+	gl.addQuery('object_account',current.object_account);
+	gl.addQuery('sub_account',current.sub_account);
+	gl.addQuery('explanation',current.explanation);
+	gl.query();
+	if(gl.next()){
+     gs.addInfoMessage('There is duplicate record in the table');
+     current.setAbortAction(true);
+		
+// 	} else
+// 		 current.setAbortAction(false);
+// 		//current.update();addNotNullQuery
+
+	}
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>v-sivakrishnaiahb</sys_created_by>
+        <sys_created_on>2018-01-24 08:45:50</sys_created_on>
+        <sys_customer_update>false</sys_customer_update>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>b95d9466db7b8700e93fb96c4e961958</sys_id>
+        <sys_mod_count>17</sys_mod_count>
+        <sys_name>Tax_GL_Matrix_Duplicate_Validations</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Tax Return Process" source="x_rtp_tax_return_p">9b1e5414db937a000713d5ab5e9619a1</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Tax Return Process">9b1e5414db937a000713d5ab5e9619a1</sys_scope>
+        <sys_update_name>sys_script_b95d9466db7b8700e93fb96c4e961958</sys_update_name>
+        <sys_updated_by>v-sivakrishnaiahb</sys_updated_by>
+        <sys_updated_on>2018-01-24 14:44:49</sys_updated_on>
+        <template/>
+        <when>before</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=b95d9466db7b8700e93fb96c4e961958"/>
+</record_update>
